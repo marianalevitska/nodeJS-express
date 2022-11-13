@@ -19,7 +19,7 @@ const contactScheme = new Schema({
     },
     phone: {
         type: String,
-        match:phoneRegExp,
+      
     },
     favorite: {
         type: Boolean,
@@ -35,13 +35,18 @@ const contactScheme = new Schema({
 const contactsScheme = Joi.object({
   name: Joi.string().required().pattern(nameRegExp),
   email: Joi.string().required().pattern(emailRegExp),
-  phone: Joi.number().required().pattern(phoneRegExp)
+  phone: Joi.number().required()
+});
+
+const statusScheme = Joi.object({
+    favorite: Joi.boolean().required(),
 });
 
 const Contact = model("contact", contactScheme);
 
 const schemas = {
-    contactInfo: contactsScheme
+    contactInfo: contactsScheme,
+    favorite:statusScheme,
 }
 
 module.exports = {
