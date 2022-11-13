@@ -3,7 +3,7 @@ const { createError } = require('../../helpers');
 
 
 const getContactById = async (req, res, next) => {
-    const contact = await Contact.findById(req.params.id);
+  const contact = await Contact.findById(req.params.id);
   if (!contact){
     next(createError(404, 'Not Found'));
   }
