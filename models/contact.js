@@ -1,10 +1,8 @@
-const { object } = require('joi');
 const Joi = require('joi');
 
 const { Schema, model } = require('mongoose');
 
 const emailRegExp = /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/;
-const phoneRegExp = /^((\+?3)?8)?((0\(\d{2}\)?)|(\(0\d{2}\))|(0\d{2}))\d{7}$/;
 const nameRegExp = /(^[A-Z]{1}[a-z]{1,14} [A-Z]{1}[a-z]{1,14}$)|(^[А-Я]{1}[а-я]{1,14} [А-Я]{1}[а-я]{1,14}$)/;
 
 const contactScheme = new Schema({
@@ -25,6 +23,10 @@ const contactScheme = new Schema({
         type: Boolean,
         default: false,
     },
+        owner: {
+      type: Schema.Types.ObjectId,
+      ref: 'user',
+    },
 },
     {
         timestamps: true,
@@ -36,7 +38,7 @@ const contactsScheme = Joi.object({
   name: Joi.string().required().pattern(nameRegExp),
   email: Joi.string().required().pattern(emailRegExp),
     phone: Joi.number().required(),
-  favorite: Joi.boolean()
+    favorite: Joi.boolean().default(false),
 });
 
 const statusScheme = Joi.object({
