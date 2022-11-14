@@ -18,7 +18,14 @@ const userScheme = new Schema({
         enum: ["starter", "pro", "business"],
         default: "starter"
     },
-    token: String
+    token: {
+        type: String,
+    },
+
+},
+    {
+        timestamps: true,
+        versionKey:false,
 });
 
 const User = model('user', userScheme);
