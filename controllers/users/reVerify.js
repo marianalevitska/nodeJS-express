@@ -15,7 +15,7 @@ const reVerify = async (req, res, next) => {
   const mail = {
     to: email,
     subject: "Verify your email",
-    html: <p>Verify your account</p>,
+    html: '<p>Verify your account</p>',
   };
   await sendMail(mail);
 

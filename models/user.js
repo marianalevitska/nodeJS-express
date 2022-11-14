@@ -52,7 +52,7 @@ const subscriptionScheme = Joi.object({
 });
 
 const verificationEmailSchema = Joi.object({
-  email: Joi.string().pattern(emailRegexp).required(),
+  email: Joi.string().pattern(emailRegExp).required(),
 });
 
 const schemas = {
